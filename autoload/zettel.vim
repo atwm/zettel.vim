@@ -19,11 +19,13 @@ endfunction
 " Create a new zettel
 function! zettel#makeZettel(...) abort
     " Make a unique filename
-    let zettelname = g:zettelkasten . strftime("%Y%m%d%H%M-") . join(a:000, '-') . '.md'
+    let title = join(a:000,' ')
+    let uid = strftime("%Y%m%d%H%M")e
+    let zettelname = g:zettelkasten . uid . '-' . join(a:000, '-') . '.md'
     execute "edit " . zettelname
     execute "-1read " . g:zettelkasten . "/assets/template.md"
     " add in filename as title in the document
-    execute "normal! 2GA"
+    execute "normal! /time:<CR>2wi"
 endfunction
 
 " SEARCH:
